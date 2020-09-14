@@ -17,14 +17,14 @@ public class RecordDTO implements Serializable {
 	private Platform platform;
 	private String genreName;
 	
-	public RecordDTO(Record record) {
-		id = record.getId();
-		moment = record.getMoment();
-		name = record.getName();
-		age = record.getAge();
-		gameTitle = record.getGame().getTitle();
-		platform = record.getGame().getPlatform();
-		genreName = record.getGame().getGenre().getName();
+	public RecordDTO(Record x) {
+		id = x.getId();
+		moment = x.getMoment();
+		name = x.getName();
+		age = x.getAge();
+		gameTitle = x.getGame().getTitle();
+		platform = x.getGame().getPlatform();
+		genreName = x.getGame().getGenre().getName();
 	}
 	
 	public Long getId() {
