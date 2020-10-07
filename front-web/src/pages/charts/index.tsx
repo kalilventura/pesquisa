@@ -3,7 +3,7 @@ import Filters from "../filters";
 import "./styles.css";
 import { barOptions, pieOptions } from "./chart-options";
 import Chart from "react-apexcharts";
-import axios from "axios";
+import api from "../../settings/api";
 import {
   buildBarSeries,
   getPlatformChartData,
@@ -25,8 +25,6 @@ const initialPieData = {
   series: [],
 };
 
-const BASE_URL = "http://localhost:8080";
-
 const Charts = () => {
   const [barChartData, setBarChartData] = useState<BarChartData[]>();
   const [platformData, setPlatformData] = useState<PieChartData>(
@@ -36,8 +34,8 @@ const Charts = () => {
 
   useEffect(() => {
     async function getData() {
-      const recordsResponse = await axios.get(`${BASE_URL}/records`);
-      const gamesResponse = await axios.get(`${BASE_URL}/games`);
+      const recordsResponse = await api.get(`/records`);
+      const gamesResponse = await api.get(`/games`);
 
       const barData = buildBarSeries(
         gamesResponse.data,

@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from "react";
 import "./styles.css";
-import axios from "axios";
 import { RecordsResponse } from "./types";
 import { formatDate } from "./helpers";
 import Pagination from "./pagination";
 import Filters from "../filters";
-
-const BASE_URL = "http://localhost:8080";
+import api from "../../settings/api";
 
 const Records = () => {
   const [recordsResponse, setRecordsResponse] = useState<RecordsResponse>();
@@ -14,8 +12,8 @@ const Records = () => {
 
   // Executa quando o componente é iniciado e quando o activePage for alterado ele vai executar
   useEffect(() => {
-    axios
-      .get(`${BASE_URL}/records?linesPerPage=12&page=${activePage}`)
+    api
+      .get(`/records?linesPerPage=12&page=${activePage}`)
       .then((response) => setRecordsResponse(response.data));
   }, [activePage]);
 
